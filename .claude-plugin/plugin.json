@@ -1,0 +1,20 @@
+{
+  "name": "agent-browse",
+  "version": "0.1.0",
+  "description": "Stateful browser automation for Claude Code. Navigate, click, fill forms, capture screenshots, and inspect console/network logs.",
+  "author": {
+    "name": "Brandon Tolle",
+    "url": "https://github.com/tollebrandon"
+  },
+  "repository": "https://github.com/tollebrandon/agent-browse",
+  "license": "MIT",
+  "keywords": ["browser", "automation", "playwright", "testing", "qa"],
+  "agents": "../agents/",
+  "mcpServers": {
+    "agent-browse": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/dist/index.js"]
+    }
+  }
+}

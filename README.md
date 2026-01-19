@@ -1,6 +1,6 @@
 # agent-browse
 
-Stateful browser automation MCP server for Claude Code. Control a browser across multiple tool calls with full console/network observability.
+Stateful browser automation plugin for Claude Code. Control a browser across multiple tool calls with full console/network observability.
 
 ## Features
 
@@ -10,6 +10,7 @@ Stateful browser automation MCP server for Claude Code. Control a browser across
 - **Error capture** - Catch JavaScript errors with stack traces (last 200 errors)
 - **Accessibility snapshots** - Get page structure as text for AI reasoning
 - **Screenshots** - Capture full page or viewport
+- **Browser subagent** - Claude auto-delegates browser tasks to a specialized agent
 
 ## Installation
 
@@ -21,6 +22,7 @@ Stateful browser automation MCP server for Claude Code. Control a browser across
 ### Build
 
 ```bash
+git clone https://github.com/tollebrandon/agent-browse.git
 cd agent-browse
 npm install
 npm run build
@@ -28,13 +30,21 @@ npm run build
 
 ### Add to Claude Code
 
-**Option 1: CLI**
+**Option 1: As a Plugin (recommended)**
+
+```bash
+claude plugin install /path/to/agent-browse
+```
+
+This installs both the MCP server and the browser subagent.
+
+**Option 2: MCP Server Only**
 
 ```bash
 claude mcp add --transport stdio agent-browse -- node /path/to/agent-browse/dist/index.js
 ```
 
-**Option 2: Project config (.mcp.json)**
+**Option 3: Project config (.mcp.json)**
 
 Create `.mcp.json` in your project root:
 
@@ -48,12 +58,6 @@ Create `.mcp.json` in your project root:
     }
   }
 }
-```
-
-**Option 3: User config**
-
-```bash
-claude mcp add --transport stdio --scope user agent-browse -- node /path/to/agent-browse/dist/index.js
 ```
 
 ### Verify Installation
